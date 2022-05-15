@@ -33,7 +33,7 @@ db.demo.insert({"params1" : NumberInt(1),"params2" : NumberInt(1)})
 如下
 ![img.png](img.png)
 
-##### mongodb bson类型查询表
+#### mongodb bson类型查询表
 
 > bson 每个数据类型都有一个相应的数字和字符串别名，可以与$ type运算符一起使用BSON类型查询文档。
 
@@ -62,7 +62,7 @@ db.demo.insert({"params1" : NumberInt(1),"params2" : NumberInt(1)})
 
 ### mongo shell 更改类型的问题
 
-开始时初始化数据生成了一条数据，分别为 params1(1) int32 params2(2) int32
+开始时初始化数据生成了一条数据，分别为 params1(1) int32， params2(2) int32
 
 现在如果想把params1的数据改为int64一般使用的做法是，通过mongodb客户端，执行以下命令
 > 根据bson类型查询表找到int32类型的数据，循环更新为int64
@@ -84,7 +84,7 @@ params1 的类型被改成了Int64，但是并没有更改params2的数据，par
 
 导致该情况出现的原因是因为mongo shell 是js实现的，而js不是一个类型化语言。
 
-功过查询mongodb官方文档
+通过查询mongodb官方文档
 [https://www.mongodb.com/docs/manual/core/shell-types/?_ga=2.43697382.294185521.1652615680-1710587817.1652615680](https://www.mongodb.com/docs/manual/core/shell-types/?_ga=2.43697382.294185521.1652615680-1710587817.1652615680)
 
 得到如下解释
