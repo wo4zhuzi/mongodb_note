@@ -24,7 +24,7 @@ Build Info: {
 root@8163d7b355e7:/# 
 ```
 
-##### 建立一张demo表并，初始化两条int32类型的数据
+#### 建立一张demo表并，初始化两条int32类型的数据
 
 ```shell
 db.demo.insert({"params1" : NumberInt(1),"params2" : NumberInt(1)})
@@ -74,13 +74,13 @@ db.demo.find({"params1" : {$type : 16}}).forEach(function(x) {
 })
 ```
 
-##### 执行结果如下
+#### 执行结果如下
 
 ![img_1.png](img_1.png)
 
 params1 的类型被改成了Int64，但是并没有更改params2的数据，params2却从Int32变成了Double类型。
 
-##### 分析如下
+#### 分析如下
 
 导致该情况出现的原因是因为mongo shell 是js实现的，而js不是一个类型化语言。
 
@@ -109,7 +109,7 @@ The mongo shell treats all numbers as 64-bit floating-point double values by def
 db.demo.find({"$where" : "this.params1 == this.params2"})
 ```
 
-##### 返回结果如下
+#### 返回结果如下
 
 + params1类型int32，params2类型int32 返回有值
 + params1类型int64，params2类型int32 返回有值
@@ -117,6 +117,6 @@ db.demo.find({"$where" : "this.params1 == this.params2"})
 + params1类型double，params2类型int64 返回有值
 + params1类型int64，params2类型int64 返回有值
 
-##### 得出结论
+#### 得出结论
 
 在$where 子查询中，只有int64和int64之间无法比较，其他类型之间可以相互比较，所以慎用$where子查询。
