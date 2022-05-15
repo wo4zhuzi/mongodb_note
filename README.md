@@ -1,8 +1,8 @@
-## Mongodb 笔记
+# Mongodb 笔记
 
-### Mongodb 使用需要避免的"坑"
+## Mongodb 使用需要避免的"坑"
 
-#### 前提
+### 前提
 
 mongodb版本是 4.4.14
 
@@ -33,7 +33,7 @@ db.demo.insert({"params1" : NumberInt(1),"params2" : NumberInt(1)})
 如下
 ![img.png](img.png)
 
-#### mongodb bson类型查询表
+##### mongodb bson类型查询表
 
 > bson 每个数据类型都有一个相应的数字和字符串别名，可以与$ type运算符一起使用BSON类型查询文档。
 
@@ -60,7 +60,7 @@ db.demo.insert({"params1" : NumberInt(1),"params2" : NumberInt(1)})
 | Min key        | -1 | minKey |  |
 | Max key     | 127  | maxKey |  |
 
-#### mongo shell 更改类型的问题
+### mongo shell 更改类型的问题
 
 开始时初始化数据生成了一条数据，分别为 params1(1) int32 params2(2) int32
 
@@ -98,7 +98,7 @@ The mongo shell treats all numbers as 64-bit floating-point double values by def
 
 更改类型建议使用后端驱动程序进行更该，而不是通过mongo shell。
 
-#### $where 自查询无法比较int64和int64类型的数据
+### $where 自查询无法比较int64和int64类型的数据
 
 当前数据库有一条数据，params1 和 params2
 
