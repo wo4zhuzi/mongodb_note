@@ -74,12 +74,13 @@ db.demo.find({"params1" : {$type : 16}}).forEach(function(x) {
 })
 ```
 
-执行结果如下
+##### 执行结果如下
+
 ![img_1.png](img_1.png)
 
 params1 的类型被改成了Int64，但是并没有更改params2的数据，params2却从Int32变成了Double类型。
 
-分析如下：
+##### 分析如下
 
 导致该情况出现的原因是因为mongo shell 是js实现的，而js不是一个类型化语言。
 
@@ -94,7 +95,7 @@ The mongo shell treats all numbers as 64-bit floating-point double values by def
 
 意思是默认情况下，mongo shell 将所有数字视为int64 和 double类型，也就是说，通过mongo shell更改类型 除了int64 和 double类型的数字数据都会自动转换成double类型。
 
-解决方案：
+#### 解决方案
 
 更改类型建议使用后端驱动程序进行更该，而不是通过mongo shell。
 
@@ -108,7 +109,7 @@ The mongo shell treats all numbers as 64-bit floating-point double values by def
 db.demo.find({"$where" : "this.params1 == this.params2"})
 ```
 
-返回结果如下
+##### 返回结果如下
 
 + params1类型int32，params2类型int32 返回有值
 + params1类型int64，params2类型int32 返回有值
@@ -116,4 +117,6 @@ db.demo.find({"$where" : "this.params1 == this.params2"})
 + params1类型double，params2类型int64 返回有值
 + params1类型int64，params2类型int64 返回有值
 
-得出结论： 在$where 子查询中，只有int64和int64之间无法比较，其他类型之间可以相互比较，所以慎用$where子查询。
+##### 得出结论
+
+在$where 子查询中，只有int64和int64之间无法比较，其他类型之间可以相互比较，所以慎用$where子查询。
