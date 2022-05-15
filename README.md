@@ -115,7 +115,7 @@ db.demo.find({"$where" : "this.params1 == this.params2"})
 + params1类型int64，params2类型int32 返回有值
 + params1类型double，params2类型int32 返回有值
 + params1类型double，params2类型int64 返回有值
-+ params1类型int64，params2类型int64 返回有值
++ params1类型int64，params2类型int64 返回为空
 
 #### 得出结论
 
